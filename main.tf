@@ -1,5 +1,4 @@
-data "azurerm_resource_group" "azurerm_resource_group" {
-  name = var.azurerm_resource_group
+resource "azurerm_resource_group" "testrg" {
+  name     = var.name
+  location = var.location
 }
-
-##### this is test
