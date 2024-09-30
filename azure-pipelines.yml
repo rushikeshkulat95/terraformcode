@@ -1,0 +1,30 @@
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+- task: TerraformTaskV4@4
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    backendAzureRmUseEnvironmentVariablesForAuthentication: false
+    backendServiceArm: 'azure-sc'
+    backendAzureRmResourceGroupName: 'teaching_rg'
+    backendAzureRmStorageAccountName: 'statebackup'
+    backendAzureRmContainerName: 'statefilebackup'
+    backendAzureRmKey: 'terraform.tfstate'   
+
+- task: TerraformTaskV4@4
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    environmentServiceNameAzureRM: 'azure-sc'
+- task: TerraformTaskV4@4
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    environmentServiceNameAzureRM: 'azure-sc'
