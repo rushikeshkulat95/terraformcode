@@ -18,13 +18,18 @@ steps:
     backendAzureRmContainerName: 'statefilebackup'
     backendAzureRmKey: 'terraform.tfstate'   
 
+# - task: TerraformTaskV4@4
+#   inputs:
+#     provider: 'azurerm'
+#     command: 'plan'
+#     environmentServiceNameAzureRM: 'azure-sc'
+# - task: TerraformTaskV4@4
+#   inputs:
+#     provider: 'azurerm'
+#     command: 'apply'
+#     environmentServiceNameAzureRM: 'azure-sc'
 - task: TerraformTaskV4@4
   inputs:
     provider: 'azurerm'
-    command: 'plan'
-    environmentServiceNameAzureRM: 'azure-sc'
-- task: TerraformTaskV4@4
-  inputs:
-    provider: 'azurerm'
-    command: 'apply'
+    command: 'destroy'
     environmentServiceNameAzureRM: 'azure-sc'
